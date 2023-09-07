@@ -1,5 +1,11 @@
+import { Button } from "quantumai-design-system";
+
 function App() {
-  return <div></div>;
+  return (
+    <div>
+      <Button label="button" />
+    </div>
+  );
 }
 
 export default App;
