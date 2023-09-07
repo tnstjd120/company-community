@@ -1,0 +1,81 @@
+{
+  "users": [
+    {
+      "name": "권순성",
+      "age": "29",
+      "gender": true,
+      "dateToJoin": "2023-05-24",
+      "count": 0
+    },
+    {
+      "name": "오원교",
+      "age": "31",
+      "gender": true,
+      "dateToJoin": "2023-05-17",
+      "count": 0
+    },
+    {
+      "name": "이수영",
+      "age": "-",
+      "gender": false,
+      "dateToJoin": "2023-05-24",
+      "count": 0
+    },
+    {
+      "name": "김효선",
+      "age": "28",
+      "gender": false,
+      "dateToJoin": "2023-05-24",
+      "count": 0
+    },
+    {
+      "name": "최진영",
+      "age": "26",
+      "gender": false,
+      "dateToJoin": "2023-05-24",
+      "count": 0
+    },
+    {
+      "name": "우지훈",
+      "age": "30",
+      "gender": true,
+      "dateToJoin": "2023-05-24",
+      "count": 0
+    },
+    {
+      "name": "박선교",
+      "age": "29",
+      "gender": true,
+      "dateToJoin": "2023-05-24",
+      "count": 0
+    },
+    {
+      "name": "하재민",
+      "age": "31",
+      "gender": true,
+      "dateToJoin": "2023-05-24",
+      "count": 0
+    },
+    {
+      "name": "김동연",
+      "age": "27",
+      "gender": true,
+      "dateToJoin": "2023-05-24",
+      "count": 0
+    },
+    {
+      "name": "박재윤",
+      "age": "26",
+      "gender": true,
+      "dateToJoin": "2023-05-24",
+      "count": 0
+    },
+    {
+      "name": "김현수",
+      "age": "29",
+      "gender": true,
+      "dateToJoin": "2023-05-24",
+      "count": 0
+    }
+  ]
+}
