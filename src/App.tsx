@@ -37,12 +37,26 @@ function App() {
     setSelectedUsers((prev) => [...prev, user]);
   };
 
-  const shuffle = () => {
-    const selectedLength = selectedUsers.length;
-    const randomIndex = Math.floor(Math.random() * selectedLength);
+  const shuffle = (array: UsersDataProps[]) => {
+    const temporary = [...array];
+
+    for (let i = temporary.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [temporary[i], temporary[j]] = [temporary[j], temporary[i]];
+    }
+
+    return temporary;
+  };
+
+  const numberToRandom = (max: number) => Math.floor(Math.random() * max);
+
+  const handleClick = () => {
+    const shuffleUsers = shuffle(selectedUsers);
+    const randomIndex = numberToRandom(selectedUsers.length - 1);
+
     shuffleAnimation();
-    setWinUser(selectedUsers[Number(randomIndex)]);
-    return selectedUsers[Number(randomIndex)]?.name;
+    setWinUser(shuffleUsers[Number(randomIndex)]);
+    return shuffleUsers[Number(randomIndex)]?.name;
   };
 
   const shuffleAnimation = () => {
@@ -113,7 +127,7 @@ function App() {
                 : `${selectedUsers.length}명 제비뽑기 고고싱`
             }
             disabled={selectedUsers.length < 2}
-            onClick={shuffle}
+            onClick={handleClick}
           />
         )}
       </InnerWrapper>
