@@ -7,7 +7,7 @@
       "gender": true,
       "dateToJoin": "2023-05-24",
       "profileImage": "",
-      "count": 0
+      "count": 2
     },
     {
       "id": 2,
@@ -25,7 +25,7 @@
       "gender": false,
       "dateToJoin": "2023-05-24",
       "profileImage": "",
-      "count": 0
+      "count": 1
     },
     {
       "id": 4,
@@ -34,7 +34,7 @@
       "gender": false,
       "dateToJoin": "2023-05-24",
       "profileImage": "",
-      "count": 0
+      "count": 1
     },
     {
       "id": 5,
@@ -43,7 +43,7 @@
       "gender": false,
       "dateToJoin": "2023-05-24",
       "profileImage": "",
-      "count": 0
+      "count": 2
     },
     {
       "id": 6,
@@ -95,6 +95,33 @@
       "name": "김현수",
       "age": "29",
       "gender": true,
+      "dateToJoin": "2023-05-24",
+      "profileImage": "",
+      "count": 0
+    },
+    {
+      "id": 12,
+      "name": "강형관 이사님",
+      "age": "29",
+      "gender": true,
+      "dateToJoin": "2023-05-24",
+      "profileImage": "",
+      "count": 0
+    },
+    {
+      "id": 13,
+      "name": "김승연",
+      "age": "29",
+      "gender": false,
+      "dateToJoin": "2023-05-24",
+      "profileImage": "",
+      "count": 0
+    },
+    {
+      "id": 14,
+      "name": "김주희",
+      "age": "29",
+      "gender": false,
       "dateToJoin": "2023-05-24",
       "profileImage": "",
       "count": 0
