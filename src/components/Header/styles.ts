@@ -7,6 +7,7 @@ export const HeaderContainer = styled.header`
   position: fixed;
   left: 0;
   top: 0;
+  z-index: 10;
   width: 100vw;
   height: 80px;
   background-color: royalblue;
