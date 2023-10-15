@@ -1,9 +1,11 @@
-import { css } from "@emotion/react";
+import { useState, useEffect } from "react";
+import { Button, Checkbox, Flex, Text } from "quantumai-design-system";
 import styled from "@emotion/styled";
-import { Button, Checkbox, Flex, Text, Toggle } from "quantumai-design-system";
-import React, { useState, useEffect } from "react";
+import Deck from "./components/Deck";
+import Header from "./components/Header";
+import Content from "./components/Content";
 
-interface UsersDataProps {
+export interface UsersProps {
   id: number | string;
   name: string;
   age: string;
@@ -15,53 +17,13 @@ interface UsersDataProps {
 function App() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const [usersData, setUsersData] = useState<UsersDataProps[]>([]);
-  const [selectedUsers, setSelectedUsers] = useState<UsersDataProps[]>([]);
-  const [selectedAll, setSelectedAll] = useState<boolean>(false);
-  const [isClickChecked, setIsClickChecked] = useState<boolean>(false);
-  const [isAnimation, setIsAnimation] = useState<boolean>(false);
-  const [winUser, setWinUser] = useState<UsersDataProps>();
+  const [users, setUsers] = useState<UsersProps[]>([]);
 
   const getUsers = async () => {
     const response = await fetch("http://localhost:4000/db", { method: "GET" });
     const jsonData = await response.json();
 
-    setUsersData(jsonData.users);
-  };
-
-  const selectToUsers = (user: UsersDataProps) => {
-    if (selectedUsers.includes(user))
-      return setSelectedUsers(
-        selectedUsers.filter((selectedUser) => user !== selectedUser)
-      );
-    setSelectedUsers((prev) => [...prev, user]);
-  };
-
-  const shuffle = (array: UsersDataProps[]) => {
-    const temporary = [...array];
-
-    for (let i = temporary.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [temporary[i], temporary[j]] = [temporary[j], temporary[i]];
-    }
-
-    return temporary;
-  };
-
-  const numberToRandom = (max: number) => Math.floor(Math.random() * max);
-
-  const handleClick = () => {
-    const shuffleUsers = shuffle(selectedUsers);
-    const randomIndex = numberToRandom(selectedUsers.length - 1);
-
-    shuffleAnimation();
-    setWinUser(shuffleUsers[Number(randomIndex)]);
-    return shuffleUsers[Number(randomIndex)]?.name;
-  };
-
-  const shuffleAnimation = () => {
-    setIsAnimation(true);
-    setTimeout(() => {}, 1000);
+    setUsers(jsonData.users);
   };
 
   useEffect(() => {
@@ -69,69 +31,16 @@ function App() {
     getUsers().finally(() => setIsLoading(false));
   }, []);
 
-  useEffect(() => {
-    if (isClickChecked) setSelectedUsers(selectedAll ? [...usersData] : []);
-  }, [selectedAll]);
-
-  useEffect(() => {
-    if (usersData.length)
-      setSelectedAll(usersData.length === selectedUsers.length);
-  }, [selectedUsers]);
-
   if (isLoading) return <div>...Loading</div>;
 
   return (
-    <UsersContainer height={"100vh"}>
-      <InnerWrapper direction="column" justifyContent="between" height={"100%"}>
-        <div className="titleLine">
-          <Text display="block" type="headline1">
-            퀀텀 제비뽑기
-          </Text>
+    <>
+      <Header label="퀀텀 제비 뽑기" />
 
-          <Checkbox
-            label="전체 선택"
-            mr="auto"
-            checked={selectedAll}
-            onClick={() => setSelectedAll((prev) => !prev)}
-            onFocus={() => setIsClickChecked(true)}
-            onBlur={() => setIsClickChecked(false)}
-          />
-        </div>
-
-        <Flex
-          data-effect={isAnimation}
-          className="animationTarget"
-          flexWrap="wrap"
-          gap={20}
-          data-type="1"
-        >
-          {usersData.map((user) => (
-            <SelectHumanButton
-              key={user.id}
-              isSelected={selectedUsers.includes(user)}
-              isWin={user === winUser}
-              gender={user.gender}
-              name={user.name}
-              onClick={() => selectToUsers(user)}
-            />
-          ))}
-        </Flex>
-
-        {isAnimation ? (
-          <Button label="다시하기" onClick={() => window.location.reload()} />
-        ) : (
-          <Button
-            label={
-              selectedUsers.length < 2
-                ? `${selectedUsers.length}명은 너무 적음;`
-                : `${selectedUsers.length}명 제비뽑기 고고싱`
-            }
-            disabled={selectedUsers.length < 2}
-            onClick={handleClick}
-          />
-        )}
-      </InnerWrapper>
-    </UsersContainer>
+      <Content>
+        <Deck users={users} />
+      </Content>
+    </>
   );
 }
 
@@ -272,72 +181,3 @@ const InnerWrapper = styled(Flex)`
     width: 100%;
   }
 `;
-
-const CustomFlex = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  cursor: pointer;
-  outline: 1px solid #ddd;
-  border-radius: 8px;
-  transition: ouline 0.4s;
-  width: calc(20% - 20px);
-  padding: 10px;
-  box-sizing: border-box;
-
-  &[data-active="true"] {
-    outline: 2px solid #0078fe;
-    background-color: #0078fe10;
-  }
-
-  &:nth-of-type(5n) {
-    width: 20%;
-  }
-
-  :hover {
-    outline: 2px solid royalblue;
-  }
-
-  figure {
-    max-width: 120px;
-    border-radius: 50%;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    img {
-      object-fit: cover;
-    }
-  }
-`;
-
-interface SelectHumanButtonProps extends React.HTMLAttributes<HTMLDivElement> {
-  gender: boolean;
-  name: string;
-  isSelected: boolean;
-  isWin: boolean;
-}
-
-const SelectHumanButton = ({
-  gender,
-  name,
-  onClick,
-  isSelected,
-  isWin,
-}: SelectHumanButtonProps) => {
-  return (
-    <CustomFlex
-      className="animationTargetItem"
-      onClick={onClick}
-      data-active={isSelected}
-      data-win={isWin}
-    >
-      <figure>
-        <img src={`public/${gender ? "male" : "female"}-profile.png`} />
-      </figure>
-      <Text type="headline2">{name}</Text>
-    </CustomFlex>
-  );
-};
