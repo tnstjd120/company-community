@@ -153,6 +153,20 @@ const Deck = ({ users, ...props }: DeckProps) => {
     }
   };
 
+  const arrayRandomNumber = (maxLength: number) => {
+    const randomNumbers: number[] = [];
+
+    while (randomNumbers.length < maxLength) {
+      const randomNumber = Math.floor(Math.random() * selectedUsers.length);
+
+      if (!randomNumbers.includes(randomNumber)) {
+        randomNumbers.push(randomNumber);
+      }
+    }
+
+    return randomNumbers;
+  };
+
   const handleClick = () => {
     fadeOutCards();
     flipCards();
@@ -161,7 +175,14 @@ const Deck = ({ users, ...props }: DeckProps) => {
     setIsGameStarted(true);
 
     const shuffledUsers = shuffle(selectedUsers);
-    const selectedWinners = shuffledUsers.slice(0, winnerLength);
+    const randomNumbers = arrayRandomNumber(winnerLength);
+
+    const selectedWinners = shuffledUsers.filter((_, index) =>
+      randomNumbers.includes(index)
+    );
+
+    console.log("randomNumbers => 랜덤 난수", randomNumbers);
+    console.log("shuffledUsers => 섞인 배열 ", shuffledUsers);
 
     const winnerIds = selectedWinners.map((user) => user.id);
 

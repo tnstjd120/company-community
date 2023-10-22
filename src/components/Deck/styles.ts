@@ -8,6 +8,8 @@ export const DeckContainer = styled.div`
 
 export const DeckGrid = styled.div`
   width: 100%;
+  max-height: calc(100vh - 240px);
+  overflow-y: auto;
   display: grid;
   gap: 20px;
   padding: 20px;
