@@ -1,6 +1,4 @@
 import { useState, useEffect } from "react";
-import { Button, Checkbox, Flex, Text } from "quantumai-design-system";
-import styled from "@emotion/styled";
 import Deck from "./components/Deck";
 import Header from "./components/Header";
 import Content from "./components/Content";

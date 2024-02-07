@@ -5,7 +5,7 @@ interface HeaderProps {
   label: string;
 }
 
-const Header = ({ label, ...props }: HeaderProps) => {
+const Header = ({ label }: HeaderProps) => {
   return (
     <HeaderContainer>
       <Text display="block" type="headline1">

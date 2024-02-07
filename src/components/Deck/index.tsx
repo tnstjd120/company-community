@@ -1,4 +1,4 @@
-import { Button, Checkbox, Flex, Material } from "quantumai-design-system";
+import { Button, Checkbox, Material } from "quantumai-design-system";
 import HumanCard from "../HumanCard";
 import { UsersProps } from "../../App";
 import { useEffect, useRef, useState } from "react";
@@ -9,7 +9,7 @@ interface DeckProps {
   users: UsersProps[];
 }
 
-const Deck = ({ users, ...props }: DeckProps) => {
+const Deck = ({ users }: DeckProps) => {
   const deckRef = useRef<HTMLDivElement>(null);
 
   const [selectedUsers, setSelectedUsers] = useState<UsersProps[]>([]);

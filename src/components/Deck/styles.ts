@@ -8,11 +8,13 @@ export const DeckContainer = styled.div`
 
 export const DeckGrid = styled.div`
   width: 100%;
+  height: calc(100vh - 240px);
   max-height: calc(100vh - 240px);
   overflow-y: auto;
   display: grid;
   gap: 20px;
   padding: 20px;
+  grid-template-rows: repeat(6, 1fr);
 
   @media screen and (min-width: 500px) {
     grid-template-columns: repeat(2, 1fr);
