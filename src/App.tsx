@@ -3,6 +3,9 @@ import Deck from "./components/Deck";
 import Header from "./components/Header";
 import Content from "./components/Content";
 
+// 논현 세팅
+import db2 from "../data/db2.json";
+
 export interface UsersProps {
   id: number | string;
   name: string;
@@ -18,10 +21,10 @@ function App() {
   const [users, setUsers] = useState<UsersProps[]>([]);
 
   const getUsers = async () => {
-    const response = await fetch("http://localhost:4000/db", { method: "GET" });
-    const jsonData = await response.json();
+    // const response = await fetch("http://localhost:4000/db", { method: "GET" });
+    // const jsonData = await response.json();
 
-    setUsers(jsonData.users);
+    setUsers(db2.users);
   };
 
   useEffect(() => {
