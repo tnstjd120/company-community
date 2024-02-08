@@ -19,7 +19,7 @@ const HumanCard = ({
     <CardContainer data-id={userId} {...props}>
       <CardFront data-active={isSelected}>
         <figure>
-          <img src={`public/${gender ? "male" : "female"}-profile.png`} />
+          <img src={`/${gender ? "male" : "female"}-profile.png`} />
           <figcaption>
             <Text type="headline2">{name}</Text>
           </figcaption>
