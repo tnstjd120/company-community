@@ -3,8 +3,9 @@ import Deck from "./components/Deck";
 import Header from "./components/Header";
 import Content from "./components/Content";
 
-// 논현 세팅
-import db2 from "../data/db2.json";
+// 전체 인원 세팅
+// FIXME: 여유 있을 때, DB 만들어서 api 전환
+import dbAll from "../data/db-all.json";
 
 export interface UsersProps {
   id: number | string;
@@ -24,7 +25,7 @@ function App() {
     // const response = await fetch("http://localhost:4000/db", { method: "GET" });
     // const jsonData = await response.json();
 
-    setUsers(db2.users);
+    setUsers(dbAll.users);
   };
 
   useEffect(() => {
